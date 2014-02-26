@@ -1,19 +1,25 @@
 package colin.kata;
 
-import static colin.kata.TennisPoint.FIFTEEN;
 import static colin.kata.TennisPoint.LOVE;
 
 
 public class TennisGame {
 
-	private Score score = new Score(LOVE, LOVE);
+	private TennisPoint playerOnePoint = LOVE;
+	private TennisPoint playerTwoPoint = LOVE;
 	
 	public Score getScore() {
-		return score;
+		return new Score(playerOnePoint, playerTwoPoint);
 	}
 
-	public void playerOneWinBall() {
-		score = new Score(FIFTEEN, LOVE);
+	public TennisGame playerOneWinBall() {
+		playerOnePoint = playerOnePoint.increment();
+		return this;
 	}
 
+	public TennisGame playerTwoWinBall() {
+		playerTwoPoint = playerTwoPoint.increment();
+		return this;
+	}
+	
 }
