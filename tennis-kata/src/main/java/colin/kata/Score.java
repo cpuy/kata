@@ -7,9 +7,9 @@ public class Score {
 	private TennisPoint playerOnePoints;
 	private TennisPoint playerTwoPoints;
 
-	public Score(TennisPoint fifteen, TennisPoint love) {
-		this.playerOnePoints = fifteen;
-		this.playerTwoPoints = love;
+	public Score(TennisPoint playerOnePoints, TennisPoint playerTwoPoints) {
+		this.playerOnePoints = playerOnePoints;
+		this.playerTwoPoints = playerTwoPoints;
 	}
 
 	@Override

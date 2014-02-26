@@ -1,10 +1,12 @@
 package colin.kata;
 
+import static colin.kata.TennisPoint.DEUCE;
 import static colin.kata.TennisPoint.FIFTEEN;
 import static colin.kata.TennisPoint.FOURTY;
 import static colin.kata.TennisPoint.LOVE;
 import static colin.kata.TennisPoint.THIRTY;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -54,5 +56,15 @@ public class TennisGameTest {
 			.playerOneWinBall();
 
 		assertThat(game.getScore()).isEqualTo(new Score(FOURTY, LOVE));
+	}
+	
+	@Test
+	public void score_should_be_Deuce_if_players_have_both_Fourty() throws Exception {
+		TennisGame game = new TennisGame();
+		
+		game.playerOneWinBall().playerOneWinBall().playerOneWinBall();
+		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
+		
+		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, DEUCE));
 	}
 }
