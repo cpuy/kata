@@ -1,16 +1,21 @@
 package colin.kata.primefactors;
 
-import static java.util.Arrays.asList;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeFactorizer {
 
-	public List<Integer> factorize(int number) throws FactorizationException {
-		if (number < 2) {
-			throw new FactorizationException("Number less than two cannot be factorized");
+	public List<Integer> factorize(final int number) {
+		List<Integer> primes = new ArrayList<Integer>();
+		if (number > 1) {
+			if (number % 2 == 0) {
+				primes.add(2);
+				primes.addAll(factorize(number / 2));
+			} else {
+				primes.add(number);
+			}
 		}
-		return asList(number);
+		return primes;
 	}
 
 }
