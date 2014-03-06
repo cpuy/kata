@@ -39,7 +39,7 @@ public class PrimeFactorizerTest {
 	}
 	
 	@Test
-	public void prime_factors_of_are_2_and_2() throws Exception {
+	public void prime_factors_of_4_are_2_and_2() throws Exception {
 		List<Integer> primeFactors = primeFactorizer.factorize(4);
 		
 		assertThat(primeFactors).containsOnly(2, 2);
