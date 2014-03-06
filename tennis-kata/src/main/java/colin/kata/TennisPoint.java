@@ -3,7 +3,7 @@ package colin.kata;
 
 public enum TennisPoint {
 
-	LOVE, FIFTEEN, THIRTY, FOURTY, DEUCE;
+	LOVE, FIFTEEN, THIRTY, FOURTY, DEUCE, ADVANTAGE;
 	
 	public TennisPoint increment() {
 		if (this.equals(FIFTEEN)) {

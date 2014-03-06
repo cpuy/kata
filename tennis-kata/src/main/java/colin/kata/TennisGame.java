@@ -1,8 +1,10 @@
 package colin.kata;
 
 import static colin.kata.TennisPoint.DEUCE;
+import static colin.kata.TennisPoint.FIFTEEN;
 import static colin.kata.TennisPoint.FOURTY;
 import static colin.kata.TennisPoint.LOVE;
+import static colin.kata.TennisPoint.THIRTY;
 
 
 public class TennisGame {
@@ -22,13 +24,28 @@ public class TennisGame {
 	}
 
 	public TennisGame playerOneWinBall() {
-		playerOnePoint = playerOnePoint.increment();
+		if (isDeuce()) {
+			playerOnePoint = TennisPoint.ADVANTAGE;
+			playerTwoPoint = TennisPoint.DEUCE;
+		} else {
+			playerOnePoint = playerOnePoint.increment();
+		}
 		return this;
 	}
 
 	public TennisGame playerTwoWinBall() {
-		playerTwoPoint = playerTwoPoint.increment();
+		playerTwoPoint = compute(playerTwoPoint);
 		return this;
+	}
+	
+	private TennisPoint compute(TennisPoint tennisPoint) {
+		if (tennisPoint.equals(FIFTEEN)) {
+			return THIRTY;
+		} else if (tennisPoint.equals(THIRTY)) {
+			return FOURTY;
+		} else {
+			return FIFTEEN;
+		}
 	}
 	
 }

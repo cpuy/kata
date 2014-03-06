@@ -1,6 +1,8 @@
 package colin.kata;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 public class Score {
 
@@ -21,5 +23,11 @@ public class Score {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(playerOnePoints).append(playerTwoPoints)
+				.toString();
 	}
 }

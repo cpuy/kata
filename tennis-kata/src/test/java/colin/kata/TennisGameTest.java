@@ -1,5 +1,6 @@
 package colin.kata;
 
+import static colin.kata.TennisPoint.ADVANTAGE;
 import static colin.kata.TennisPoint.DEUCE;
 import static colin.kata.TennisPoint.FIFTEEN;
 import static colin.kata.TennisPoint.FOURTY;
@@ -66,5 +67,16 @@ public class TennisGameTest {
 		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
 		
 		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, DEUCE));
+	}
+	
+	@Test
+	public void score_should_be_advantage_for_user_winning_ball_on_deuce() throws Exception {
+		TennisGame game = new TennisGame();
+		game.playerOneWinBall().playerOneWinBall().playerOneWinBall();
+		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
+		
+		game.playerOneWinBall();
+		
+		assertThat(game.getScore()).isEqualTo(new Score(ADVANTAGE, DEUCE));
 	}
 }
