@@ -11,16 +11,12 @@ public class PrimeFactorizer {
 		if (n > 1) {
 			int prime = 2;
 			
-			while (prime < n) {
+			while (prime <= n) {
 				if (n % prime == 0) {
 					primes.add(prime);
 					n /= prime;
 				} 
 				prime++;
-			}
-			
-			if (n > 1) {
-				primes.add(n);
 			}
 		}
 		return primes;
