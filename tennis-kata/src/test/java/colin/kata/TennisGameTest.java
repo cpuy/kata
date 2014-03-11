@@ -7,7 +7,6 @@ import static colin.kata.TennisPoint.FOURTY;
 import static colin.kata.TennisPoint.LOVE;
 import static colin.kata.TennisPoint.THIRTY;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 
