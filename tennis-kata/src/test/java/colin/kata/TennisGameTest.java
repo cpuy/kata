@@ -12,6 +12,13 @@ import org.junit.Test;
 
 public class TennisGameTest {
 
+	private TennisGame deuceGame() {
+		TennisGame game = new TennisGame();
+		game.playerOneWinBall().playerOneWinBall().playerOneWinBall();
+		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
+		return game;
+	}
+
 	@Test
 	public void should_start_with_Love_Love_score() throws Exception {
 		TennisGame game = new TennisGame();
@@ -60,22 +67,27 @@ public class TennisGameTest {
 	
 	@Test
 	public void score_should_be_Deuce_if_players_have_both_Fourty() throws Exception {
-		TennisGame game = new TennisGame();
-		
-		game.playerOneWinBall().playerOneWinBall().playerOneWinBall();
-		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
+		TennisGame game = deuceGame();
 		
 		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, DEUCE));
 	}
-	
+
 	@Test
 	public void score_should_be_advantage_for_user_winning_ball_on_deuce() throws Exception {
-		TennisGame game = new TennisGame();
-		game.playerOneWinBall().playerOneWinBall().playerOneWinBall();
-		game.playerTwoWinBall().playerTwoWinBall().playerTwoWinBall();
+		TennisGame game = deuceGame();
 		
 		game.playerOneWinBall();
 		
 		assertThat(game.getScore()).isEqualTo(new Score(ADVANTAGE, DEUCE));
+	}
+	
+	@Test
+	public void score_should_be_deuce_if_user_which_has_not_advantage_win_ball() throws Exception {
+		TennisGame game = deuceGame();
+		
+		game.playerTwoWinBall();
+		game.playerOneWinBall();
+		
+		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, DEUCE));
 	}
 }

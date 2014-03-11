@@ -1,5 +1,6 @@
 package colin.kata;
 
+import static colin.kata.TennisPoint.ADVANTAGE;
 import static colin.kata.TennisPoint.DEUCE;
 import static colin.kata.TennisPoint.FOURTY;
 import static colin.kata.TennisPoint.LOVE;
@@ -33,6 +34,10 @@ public class TennisGame {
 	}
 
 	private boolean isDeuce() {
-		return playerOnePoint.equals(FOURTY) && playerTwoPoint.equals(FOURTY);
+		return bothHave(FOURTY) || bothHave(ADVANTAGE);
+	}
+
+	private boolean bothHave(TennisPoint point) {
+		return playerOnePoint == point && playerTwoPoint == point;
 	}
 }
