@@ -9,22 +9,20 @@ public class PrimeFactorizer {
 
 	public List<Integer> factorize(final int number) {
 		Factorizable factorizable = new Factorizable(number);
-		if (factorizable.canBeFactorized()) 
+		if (factorizable.canBeFactorized())
 			return factorize(factorizable);
 		else
 			return emptyList();
 	}
 
 	private List<Integer> factorize(Factorizable factorizable) {
-		List<Integer> primes = new ArrayList<Integer>();
-		int prime = 2;
-		while (factorizable.greaterOrEqualsThan(prime)) {
-			if (factorizable.isFactorizableBy(prime)) {
-				primes.add(prime);
-				factorizable.factorize(prime);
-			} 
-			prime++;
+		List<Integer> factors = new ArrayList<Integer>();
+		for (int factor = 2; factorizable.greaterOrEqualsThan(factor); factor++) {
+			if (factorizable.isFactorizableBy(factor)) {
+				factors.add(factor);
+				factorizable.factorize(factor);
+			}
 		}
-		return primes;
+		return factors;
 	}
 }
