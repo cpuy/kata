@@ -51,4 +51,18 @@ public class PrimeFactorizerTest {
 		
 		assertThat(primeFactors).containsOnly(3, 2);
 	}
+	
+	@Test
+	public void prime_factors_of_9_are_3_and_3() throws Exception {
+		List<Integer> primeFactors = primeFactorizer.factorize(9);
+		
+		assertThat(primeFactors).containsOnly(3, 3);
+	}
+	
+	@Test
+	public void prime_factors_of_330_are_11_2_3_and_5() throws Exception {
+		List<Integer> primeFactors = primeFactorizer.factorize(330);
+		
+		assertThat(primeFactors).containsOnly(11, 2, 3, 5);
+	}
 }
