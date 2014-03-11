@@ -12,7 +12,9 @@ public class PrimeFactorizer {
 			if (n % 2 == 0) {
 				primes.add(2);
 				n /= 2;
-			} else {
+			} 
+			
+			if (n > 1) {
 				primes.add(n);
 			}
 		}

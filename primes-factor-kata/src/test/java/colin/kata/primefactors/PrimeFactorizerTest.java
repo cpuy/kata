@@ -44,4 +44,11 @@ public class PrimeFactorizerTest {
 		
 		assertThat(primeFactors).containsOnly(2, 2);
 	}
+	
+	@Test
+	public void prime_factors_of_6_are_3_and_2() throws Exception {
+		List<Integer> primeFactors = primeFactorizer.factorize(6);
+		
+		assertThat(primeFactors).containsOnly(3, 2);
+	}
 }
