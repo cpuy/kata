@@ -8,11 +8,11 @@ public class PrimeFactorizer {
 	public List<Integer> factorize(final int number) {
 		List<Integer> primes = new ArrayList<Integer>();
 		int n = number;
-		if (n > 1) {
+		if (canBeFactorized(n)) {
 			int prime = 2;
 			
 			while (prime <= n) {
-				if (n % prime == 0) {
+				if (isFactorizable(n, prime)) {
 					primes.add(prime);
 					n /= prime;
 				} 
@@ -20,6 +20,14 @@ public class PrimeFactorizer {
 			}
 		}
 		return primes;
+	}
+
+	private boolean canBeFactorized(int number) {
+		return number > 1;
+	}
+
+	private boolean isFactorizable(int number, int factor) {
+		return number % factor == 0;
 	}
 
 }
