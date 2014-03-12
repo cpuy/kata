@@ -6,6 +6,7 @@ import static colin.kata.TennisPoint.FIFTEEN;
 import static colin.kata.TennisPoint.FOURTY;
 import static colin.kata.TennisPoint.LOVE;
 import static colin.kata.TennisPoint.THIRTY;
+import static colin.kata.TennisPoint.WIN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
@@ -89,5 +90,24 @@ public class TennisGameTest {
 		game.playerOneWinBall();
 		
 		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, DEUCE));
+	}
+	
+	@Test
+	public void player_win_game_if_he_win_four_balls() throws Exception {
+		TennisGame game = new TennisGame();
+		
+		game.playerOneWinBall().playerOneWinBall().playerOneWinBall().playerOneWinBall();
+		
+		assertThat(game.getScore()).isEqualTo(new Score(WIN, LOVE));
+	}
+	
+	@Test
+	public void player_win_game_if_he_has_advantage_a_win_the_ball() throws Exception {
+		TennisGame game = deuceGame();
+		game.playerTwoWinBall();
+
+		game.playerTwoWinBall();
+		
+		assertThat(game.getScore()).isEqualTo(new Score(DEUCE, WIN));
 	}
 }
