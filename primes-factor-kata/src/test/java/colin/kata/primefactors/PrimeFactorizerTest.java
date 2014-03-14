@@ -41,7 +41,7 @@ public class PrimeFactorizerTest {
 	public void prime_factors_of_4_are_2_and_2() throws Exception {
 		List<Integer> primeFactors = primeFactorizer.factorize(4);
 
-		assertThat(primeFactors).containsOnly(2, 2);
+		assertThat(primeFactors).containsExactly(2, 2);
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class PrimeFactorizerTest {
 	public void prime_factors_of_9_are_3_and_3() throws Exception {
 		List<Integer> primeFactors = primeFactorizer.factorize(9);
 
-		assertThat(primeFactors).containsOnly(3, 3);
+		assertThat(primeFactors).containsExactly(3, 3);
 	}
 
 	@Test

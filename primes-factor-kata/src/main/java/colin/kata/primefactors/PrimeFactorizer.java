@@ -18,7 +18,7 @@ public class PrimeFactorizer {
 	private List<Integer> factorize(Factorizable factorizable) {
 		List<Integer> factors = new ArrayList<Integer>();
 		for (int factor = 2; factorizable.greaterOrEqualsThan(factor); factor++) {
-			if (factorizable.isFactorizableBy(factor)) {
+			while (factorizable.isFactorizableBy(factor)) {
 				factors.add(factor);
 				factorizable.factorize(factor);
 			}
