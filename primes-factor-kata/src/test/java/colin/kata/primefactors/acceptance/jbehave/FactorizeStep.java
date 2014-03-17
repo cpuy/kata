@@ -1,4 +1,4 @@
-package colin.kata.primefactors;
+package colin.kata.primefactors.acceptance.jbehave;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,6 +7,8 @@ import java.util.List;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+
+import colin.kata.primefactors.PrimeFactorizer;
 
 public class FactorizeStep {
 

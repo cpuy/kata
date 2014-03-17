@@ -1,4 +1,4 @@
-package colin.kata.primefactors;
+package colin.kata.primefactors.acceptance.jbehave;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
