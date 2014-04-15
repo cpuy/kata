@@ -1,5 +1,6 @@
 package colin.kata.codegen;
 
+import colin.kata.codegen.parser.MessageParser;
 import colin.kata.codegen.strategy.GenerationStrategy;
 import colin.kata.codegen.strategy.JavaStrategy;
 

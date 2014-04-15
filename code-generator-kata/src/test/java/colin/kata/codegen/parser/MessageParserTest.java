@@ -1,13 +1,14 @@
-package colin.kata.codegen;
+package colin.kata.codegen.parser;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import colin.kata.codegen.Message;
 
 public class MessageParserTest {
 

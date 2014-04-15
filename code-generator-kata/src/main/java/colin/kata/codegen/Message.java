@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import colin.kata.codegen.parser.Field;
+
 public class Message {
 
 	private List<String> comments = new ArrayList<String>();

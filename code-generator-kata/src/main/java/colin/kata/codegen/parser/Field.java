@@ -1,4 +1,4 @@
-package colin.kata.codegen;
+package colin.kata.codegen.parser;
 
 public class Field {
 

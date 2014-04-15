@@ -1,6 +1,8 @@
-package colin.kata.codegen;
+package colin.kata.codegen.parser;
 
 import java.util.List;
+
+import colin.kata.codegen.Message;
 
 public class MessageParser {
 
@@ -10,6 +12,22 @@ public class MessageParser {
 	private static final String FIELD = "F";
 
 	public Message parse(List<String> lines) throws InvalidFormatExeption {
+		validateFormat(lines);
+		
+		Message message = new Message();
+		for (String line : lines) {
+			if (describe(DATANAME, line)) {
+				message.setDataName(extract(line, DATANAME));
+			} else if (describe(COMMENT, line)) {
+				message.addComment(extract(line, COMMENT));
+			}  else if (describe(FIELD, line)) {
+				message.addField(parseField(line));
+			}
+		}
+		return message;
+	}
+
+	private void validateFormat(List<String> lines) throws InvalidFormatExeption {
 		if (!describe(END, lastLine(lines))) {
 			throw new InvalidFormatExeption("Message must end with a E tag");
 		}
@@ -21,19 +39,6 @@ public class MessageParser {
 				throw new InvalidFormatExeption("Message must start with a D tag, or have optionnal comments");
 			}
 		}
-		
-		Message message = new Message();
-		for (int i = 0; !lines.get(i).contains(END); i++) {
-			String line = lines.get(i);
-			if (describe(DATANAME, line)) {
-				message.setDataName(extract(line, DATANAME));
-			} else if (describe(COMMENT, line)) {
-				message.addComment(extract(line, COMMENT));
-			}  else if (describe(FIELD, line)) {
-				message.addField(parseField(line));
-			}
-		}
-		return message;
 	}
 
 	private Field parseField(String line) {
