@@ -1,6 +1,8 @@
 package colin.kata.codegen;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import colin.kata.codegen.strategy.DartStrategy;
+import colin.kata.codegen.strategy.JavaStrategy;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,12 +20,12 @@ public class GeneratePojoDef {
 
 	@When("^I ask for dart POJO generation$")
 	public void I_ask_for_dart_POJO_generation() throws Throwable {
-		generatedPojo = new PojoGenerator(new DartStrategy()).generate(data);
+		generatedPojo = new PojoGenerator(new MessageParser(), new DartStrategy()).generate(data);
 	}
 
 	@When("^I ask for java POJO generation$")
 	public void I_ask_for_java_POJO_generation() throws Throwable {
-		generatedPojo = new PojoGenerator(new JavaStrategy()).generate(data);
+		generatedPojo = new PojoGenerator(new MessageParser(), new JavaStrategy()).generate(data);
 	}
 
 	@Then("^I should have the given POJO$")
