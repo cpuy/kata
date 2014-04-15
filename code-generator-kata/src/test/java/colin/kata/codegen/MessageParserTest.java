@@ -42,4 +42,10 @@ public class MessageParserTest {
 		assertThat(message.getComments()).containsExactly("this is a comment", "this is another comment");
 	}
 
+	@Test
+	public void should_parse_fields() throws Exception {
+		Message message = parser.parse(asList("D dataName", "F textField\ttext", "F integerField integer", "E"));
+
+		assertThat(message.getFields()).containsExactly(new Field("textField", FieldType.TEXT), new Field("integerField", FieldType.INTEGER));
+	}
 }
