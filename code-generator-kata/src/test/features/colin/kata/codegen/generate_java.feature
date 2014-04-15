@@ -9,8 +9,8 @@ Feature: Java POJO generation
 			F order_code integer
 			E
 			"""
-		When I ask for POJO generation
-		Then I should have the given java generated
+		When I ask for java POJO generation
+		Then I should have the given POJO
 			"""
 			/**
 			* Domain representation of product 

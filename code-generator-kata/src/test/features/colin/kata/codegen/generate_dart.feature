@@ -9,8 +9,8 @@ Feature: Dart POJO generation
 			F order_code integer
 			E
 			"""
-		When I ask for POJO generation
-		Then I should have the given dart generated
+		When I ask for dart POJO generation
+		Then I should have the given POJO
 			""" 
 			/* Domain representation of product */
 			class Product {
