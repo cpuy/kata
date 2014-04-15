@@ -23,35 +23,23 @@ public class MessageParserTest {
 		parser.parse(asList("H this is an unknow tag"));
 	}
 	
+	@Test(expected = InvalidFormatExeption.class)
+	public void should_end_with_a_E_tag() throws Exception {
+		parser.parse(asList("D begin", "A not correctly ended"));
+	}
+
 	@Test
 	public void should_parse_data_name() throws Exception {
-		Message message = parser.parse(Arrays.asList("D dataName"));
+		Message message = parser.parse(Arrays.asList("D dataName", "E"));
 		
 		assertThat(message.getDataName()).isEqualTo("dataName");
 	}
 
 	@Test
 	public void might_have_one_or_several_comments_before_message_start() throws Exception {
-		Message message = parser.parse(asList("# this is a comment", "# this is another comment", "D dataName"));
+		Message message = parser.parse(asList("# this is a comment", "# this is another comment", "D dataName", "E"));
 
 		assertThat(message.getComments()).containsExactly("this is a comment", "this is another comment");
 	}
 
-	// @Test
-	// public void should_parse_comments() throws Exception {
-	// parser = new MessageParser();
-	//
-	// Message message = parser.parse(asList("# this is a comment"));
-	//
-	// assertThat(message.getComment()).isEqualTo("this is a comment");
-	// }
-	//
-	// @Test
-	// public void should_parse_data_name() throws Exception {
-	// parser = new MessageParser();
-	//
-	// Message message = parser.parse(asList("# this is a comment", "D dataName"));
-	//
-	// assertThat(message.getDataName()).isEqualTo("dataName");
-	// }
 }
