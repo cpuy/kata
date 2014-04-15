@@ -1,14 +1,32 @@
 package colin.kata.codegen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Message {
 
-	private String comment;
+	private List<String> comments = new ArrayList<String>();
+	private String dataName;
 
-	public Message(String comment) {
-		this.comment = comment;
+	public Message() {}
+
+	public String getDataName() {
+		return dataName;
 	}
 
-	public String getComment() {
-		return comment;
+	public void setDataName(String dataName) {
+		this.dataName = dataName;
+	}
+
+	public List<String> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<String> comments) {
+		this.comments = comments;
+	}
+	
+	public void addComment(String comment) {
+		this.comments.add(comment);
 	}
 }
