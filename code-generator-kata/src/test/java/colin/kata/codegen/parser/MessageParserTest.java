@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import colin.kata.codegen.Message;
+import colin.kata.codegen.validator.InvalidFormatExeption;
 
 public class MessageParserTest {
 
@@ -21,7 +22,7 @@ public class MessageParserTest {
 
 	@Test(expected = InvalidFormatExeption.class)
 	public void should_begin_with_a_D_tag() throws Exception {
-		parser.parse(asList("H this is an unknow tag"));
+		parser.parse(asList("H this is an unknow tag", "E"));
 	}
 	
 	@Test(expected = InvalidFormatExeption.class)

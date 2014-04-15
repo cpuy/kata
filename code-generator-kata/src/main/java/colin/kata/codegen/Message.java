@@ -1,6 +1,5 @@
 package colin.kata.codegen;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +25,6 @@ public class Message {
 		return comments;
 	}
 
-	public void setComments(List<String> comments) {
-		this.comments = comments;
-	}
-	
 	public void addComment(String comment) {
 		this.comments.add(comment);
 	}

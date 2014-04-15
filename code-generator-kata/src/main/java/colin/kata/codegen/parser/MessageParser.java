@@ -3,24 +3,21 @@ package colin.kata.codegen.parser;
 import java.util.List;
 
 import colin.kata.codegen.Message;
+import colin.kata.codegen.MessageTag;
+import colin.kata.codegen.validator.InvalidFormatExeption;
 
 public class MessageParser {
-
-	private static final String END = "E";
-	private static final String COMMENT = "#";
-	private static final String DATANAME = "D";
-	private static final String FIELD = "F";
 
 	public Message parse(List<String> lines) throws InvalidFormatExeption {
 		validateFormat(lines);
 		
 		Message message = new Message();
 		for (String line : lines) {
-			if (describe(DATANAME, line)) {
-				message.setDataName(extract(line, DATANAME));
-			} else if (describe(COMMENT, line)) {
-				message.addComment(extract(line, COMMENT));
-			}  else if (describe(FIELD, line)) {
+			if (describe(MessageTag.DATANAME, line)) {
+				message.setDataName(extract(line, MessageTag.DATANAME));
+			} else if (describe(MessageTag.COMMENT, line)) {
+				message.addComment(extract(line, MessageTag.COMMENT));
+			}  else if (describe(MessageTag.FIELD, line)) {
 				message.addField(parseField(line));
 			}
 		}
@@ -28,21 +25,21 @@ public class MessageParser {
 	}
 
 	private void validateFormat(List<String> lines) throws InvalidFormatExeption {
-		if (!describe(END, lastLine(lines))) {
+		if (!describe(MessageTag.END, lastLine(lines))) {
 			throw new InvalidFormatExeption("Message must end with a E tag");
 		}
 		for (String string : lines) {
-			if (describe(DATANAME, string)) {
+			if (describe(MessageTag.DATANAME, string)) {
 				break;
 			}
-			if (!describe(COMMENT, string)) {
+			if (!describe(MessageTag.COMMENT, string)) {
 				throw new InvalidFormatExeption("Message must start with a D tag, or have optionnal comments");
 			}
 		}
 	}
 
 	private Field parseField(String line) {
-		String field = extract(line, FIELD);
+		String field = extract(line, MessageTag.FIELD);
 		String[] split = field.split("\\s");
 		return new Field(split[0].trim(), FieldType.valueOf(split[1].toUpperCase()));
 	}
@@ -51,12 +48,12 @@ public class MessageParser {
 		return lines.get(lines.size() - 1);
 	}
 
-	private boolean describe(String tag, String line) {
-		return line.contains(tag);
+	private boolean describe(MessageTag tag, String line) {
+		return line.contains(tag.toString());
 	}
 
-	private String extract(String line, String tag) {
-		return line.replaceFirst(tag, "").trim();
+	private String extract(String line, MessageTag tag) {
+		return line.replaceFirst(tag.toString(), "").trim();
 	}
 
 }
