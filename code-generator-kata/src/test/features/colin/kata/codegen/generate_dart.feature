@@ -20,7 +20,7 @@ Feature: Dart POJO generation
 			class Product {
 				int id, orderCode;
 				String name;
-			       
+			
 				Product(this.id, this.name, this.orderCode);
 			}
 			"""
