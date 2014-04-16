@@ -19,9 +19,9 @@ public class DartStrategy implements GenerationStrategy {
 		StringBuilder builder = new StringBuilder();
 		builder.append("/**").append(lineSeparator());
 		for (String comment : message.getComments()) {
-			builder.append(" * ").append(comment);
+			builder.append(" * ").append(comment).append(lineSeparator());
 		}
-		builder.append(lineSeparator()).append(" */").append(lineSeparator());
+		builder.append(" */").append(lineSeparator());
 		return builder.toString();
 	}
 

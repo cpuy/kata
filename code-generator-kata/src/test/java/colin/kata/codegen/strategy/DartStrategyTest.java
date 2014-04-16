@@ -23,11 +23,12 @@ public class DartStrategyTest {
 	
 	@Test
 	public void should_add_comments_on_top() throws Exception {
-		String expected = "/**\n * This is a comment\n */\nclass Product {\n}";
+		String expected = "/**\n * This is a comment\n * This is another comment\n */\nclass Product {\n}";
 		
 		Message message = new Message();
 		message.setDataName("Product");
 		message.addComment("This is a comment");
+		message.addComment("This is another comment");
 		
 		String generated = new DartStrategy().generate(message);
 		
