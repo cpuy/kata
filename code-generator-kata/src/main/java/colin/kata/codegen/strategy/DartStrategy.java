@@ -1,6 +1,12 @@
 package colin.kata.codegen.strategy;
 
 import static java.lang.System.lineSeparator;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import colin.kata.codegen.Message;
 import colin.kata.codegen.parser.Field;
 import colin.kata.codegen.parser.FieldType;
@@ -11,10 +17,27 @@ public class DartStrategy implements GenerationStrategy {
 		StringBuilder builder = new StringBuilder();
 		builder.append(comments(message));
 		builder.append("class ").append(message.getDataName()).append(" {").append(lineSeparator());
-		for (Field field : message.getFields()) {
-			builder.append("\t").append(convert(field.getFieldType())).append(" ").append(field.getName()).append(";").append(lineSeparator());
-		}
+		builder.append(fields(message));
 		builder.append("}");
+		return builder.toString();
+	}
+
+	private String fields(Message message) {
+		StringBuilder builder = new StringBuilder();
+		HashMap<FieldType, List<Field>> map = new LinkedHashMap<FieldType, List<Field>>();
+		for (Field field : message.getFields()) {
+			List<Field> list = map.get(field.getFieldType());
+			if (list == null) { list = new ArrayList<Field>(); map.put(field.getFieldType(), list); }
+			list.add(field);
+		}
+		for (FieldType type : map.keySet()) {
+			builder.append("\t").append(convert(type));
+			for (Field f : map.get(type)) {
+				builder.append(" ").append(f.getName()).append(",");
+			}
+			builder.deleteCharAt(builder.length() - 1);
+			builder.append(";").append(lineSeparator());
+		}
 		return builder.toString();
 	}
 	

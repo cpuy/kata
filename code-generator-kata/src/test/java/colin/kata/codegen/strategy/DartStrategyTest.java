@@ -1,6 +1,7 @@
 package colin.kata.codegen.strategy;
 
 import static colin.kata.codegen.parser.FieldType.INTEGER;
+import static colin.kata.codegen.parser.FieldType.TEXT;
 import static colin.kata.codegen.parser.MessageBuilder.aMessage;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -47,13 +48,25 @@ public class DartStrategyTest {
 	
 	@Test
 	public void should_add_fields_in_class_body() throws Exception {
-		String expected = "class Product {\n\tint id;\n}";
+		String expected = "class Product {\n\tint id;\n\tString name;\n}";
 		Message message = aMessage().withDataName("Product")
-				.withField(new Field("id", INTEGER)).build();
+				.withField(new Field("id", INTEGER))
+				.withField(new Field("name", TEXT)).build();
 		
 		String generated = strategy.generate(message);
 		
 		assertThat(generated).isEqualTo(expected);
 	}
 	
+	@Test
+	public void should_add_same_type_fields_on_same_line() throws Exception {
+		String expected = "class Product {\n\tint id, code;\n}";
+		Message message = aMessage().withDataName("Product")
+				.withField(new Field("id", INTEGER))
+				.withField(new Field("code", INTEGER)).build();
+		
+		String generated = strategy.generate(message);
+		
+		assertThat(generated).isEqualTo(expected);
+	}
 }
