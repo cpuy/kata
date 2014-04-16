@@ -39,7 +39,7 @@ public class MessageParser {
 
 	private Field parseField(String line) {
 		String field = extract(line, MessageTag.FIELD);
-		String[] split = field.split("\\s");
+		String[] split = field.split("\\s+");
 		return new Field(split[0].trim(), FieldType.valueOf(split[1].toUpperCase()));
 	}
 	

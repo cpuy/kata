@@ -31,21 +31,21 @@ public class MessageParserTest {
 
 	@Test
 	public void should_parse_data_name() throws Exception {
-		Message message = parser.parse(Arrays.asList("D dataName", "E"));
+		Message message = parser.parse(Arrays.asList("M dataName", "E"));
 		
 		assertThat(message.getDataName()).isEqualTo("dataName");
 	}
 
 	@Test
 	public void might_have_one_or_several_comments_before_message_start() throws Exception {
-		Message message = parser.parse(asList("# this is a comment", "# this is another comment", "D dataName", "E"));
+		Message message = parser.parse(asList("# this is a comment", "# this is another comment", "M dataName", "E"));
 
 		assertThat(message.getComments()).containsExactly("this is a comment", "this is another comment");
 	}
 
 	@Test
 	public void should_parse_fields() throws Exception {
-		Message message = parser.parse(asList("D dataName", "F textField\ttext", "F integerField integer", "E"));
+		Message message = parser.parse(asList("M dataName", "F textField\ttext", "F integerField integer", "E"));
 
 		assertThat(message.getFields()).containsExactly(new Field("textField", FieldType.TEXT), new Field("integerField", FieldType.INTEGER));
 	}

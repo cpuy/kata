@@ -1,7 +1,7 @@
 package colin.kata.codegen;
 
 public enum MessageTag {
-	DATANAME("D"), FIELD("F"), END("E"), COMMENT("#");
+	DATANAME("M"), FIELD("F"), END("E"), COMMENT("#");
 	
 	private String description;
 
