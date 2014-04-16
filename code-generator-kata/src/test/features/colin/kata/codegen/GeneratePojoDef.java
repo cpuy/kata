@@ -1,6 +1,7 @@
 package colin.kata.codegen;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import colin.kata.codegen.parser.MessageParser;
 import colin.kata.codegen.strategy.DartStrategy;
 import colin.kata.codegen.strategy.JavaStrategy;
 import cucumber.api.java.en.Given;
