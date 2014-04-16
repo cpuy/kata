@@ -24,7 +24,7 @@ Feature: Java POJO generation
 				private int orderCode;
 			
 				public Product() {}
-				
+			
 				public Product(int id, String name, int orderCode) {
 					this.id = id;
 					this.name = name;
