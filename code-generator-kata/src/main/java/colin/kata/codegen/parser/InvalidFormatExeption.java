@@ -1,4 +1,4 @@
-package colin.kata.codegen.validator;
+package colin.kata.codegen.parser;
 
 @SuppressWarnings("serial")
 public class InvalidFormatExeption extends Exception {

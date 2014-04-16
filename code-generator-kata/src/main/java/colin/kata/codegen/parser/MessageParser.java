@@ -4,7 +4,6 @@ import java.util.List;
 
 import colin.kata.codegen.Message;
 import colin.kata.codegen.MessageTag;
-import colin.kata.codegen.validator.InvalidFormatExeption;
 
 public class MessageParser {
 

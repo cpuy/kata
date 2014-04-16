@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import colin.kata.codegen.Message;
-import colin.kata.codegen.validator.InvalidFormatExeption;
 
 public class MessageParserTest {
 
