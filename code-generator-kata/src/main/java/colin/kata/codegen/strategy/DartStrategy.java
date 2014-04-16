@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import colin.kata.codegen.Message;
 import colin.kata.codegen.parser.Field;
@@ -24,15 +25,10 @@ public class DartStrategy implements GenerationStrategy {
 
 	private String fields(Message message) {
 		StringBuilder builder = new StringBuilder();
-		HashMap<FieldType, List<Field>> map = new LinkedHashMap<FieldType, List<Field>>();
-		for (Field field : message.getFields()) {
-			List<Field> list = map.get(field.getFieldType());
-			if (list == null) { list = new ArrayList<Field>(); map.put(field.getFieldType(), list); }
-			list.add(field);
-		}
-		for (FieldType type : map.keySet()) {
+		Map<FieldType, List<Field>> fieldsByType = getFieldsByType(message);
+		for (FieldType type : fieldsByType.keySet()) {
 			builder.append("\t").append(convert(type));
-			for (Field f : map.get(type)) {
+			for (Field f : fieldsByType.get(type)) {
 				builder.append(" ").append(f.getName()).append(",");
 			}
 			builder.deleteCharAt(builder.length() - 1);
@@ -40,7 +36,20 @@ public class DartStrategy implements GenerationStrategy {
 		}
 		return builder.toString();
 	}
-	
+
+	private Map<FieldType, List<Field>> getFieldsByType(Message message) {
+		Map<FieldType, List<Field>> fieldsByType = new LinkedHashMap<FieldType, List<Field>>();
+		for (Field field : message.getFields()) {
+			List<Field> list = fieldsByType.get(field.getFieldType());
+			if (list == null) {
+				list = new ArrayList<Field>();
+				fieldsByType.put(field.getFieldType(), list);
+			}
+			list.add(field);
+		}
+		return fieldsByType;
+	}
+
 	private String convert(FieldType type) {
 		if (FieldType.INTEGER.equals(type)) {
 			return "int";
