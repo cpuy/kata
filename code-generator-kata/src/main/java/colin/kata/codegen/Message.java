@@ -36,4 +36,8 @@ public class Message {
 	public void addField(Field field) {
 		fields.add(field);		
 	}
+
+	public boolean hasComments() {
+		return comments.size() > 0;
+	}
 }
