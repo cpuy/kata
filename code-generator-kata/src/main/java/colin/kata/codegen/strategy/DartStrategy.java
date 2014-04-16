@@ -3,7 +3,6 @@ package colin.kata.codegen.strategy;
 import static java.lang.System.lineSeparator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,23 @@ public class DartStrategy implements GenerationStrategy {
 		builder.append(comments(message));
 		builder.append("class ").append(message.getDataName()).append(" {").append(lineSeparator());
 		builder.append(fields(message));
+		builder.append(constructor(message));
 		builder.append("}");
+		return builder.toString();
+	}
+
+	private String constructor(Message message) {
+		if (message.getFields().isEmpty()) {
+			return "";
+		}
+		StringBuilder builder = new StringBuilder();
+		builder.append("\t").append(message.getDataName()).append("(");
+		for (Field f : message.getFields()) {
+			builder.append("this.").append(f.getName()).append(", ");
+		}
+		builder.deleteCharAt(builder.length() - 1);
+		builder.deleteCharAt(builder.length() - 1);
+		builder.append(");").append(lineSeparator());
 		return builder.toString();
 	}
 

@@ -4,15 +4,12 @@ import static colin.kata.codegen.parser.FieldType.INTEGER;
 import static colin.kata.codegen.parser.FieldType.TEXT;
 import static colin.kata.codegen.parser.MessageBuilder.aMessage;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import colin.kata.codegen.Message;
 import colin.kata.codegen.parser.Field;
-import colin.kata.codegen.parser.FieldType;
-import colin.kata.codegen.parser.MessageBuilder;
 
 
 public class DartStrategyTest {
@@ -48,22 +45,34 @@ public class DartStrategyTest {
 	
 	@Test
 	public void should_add_fields_in_class_body() throws Exception {
-		String expected = "class Product {\n\tint id;\n\tString name;\n}";
+		String expected = "class Product \\{\\n\tint id;\\n\tString name;\\n*.*\\n\\}";
 		Message message = aMessage().withDataName("Product")
 				.withField(new Field("id", INTEGER))
 				.withField(new Field("name", TEXT)).build();
 		
 		String generated = strategy.generate(message);
 		
-		assertThat(generated).isEqualTo(expected);
+		assertThat(generated).matches(expected);
 	}
 	
 	@Test
 	public void should_add_same_type_fields_on_same_line() throws Exception {
-		String expected = "class Product {\n\tint id, code;\n}";
+		String expected = "class Product \\{\\n.*\tint id, code;\\n*.*\\n\\}";
 		Message message = aMessage().withDataName("Product")
 				.withField(new Field("id", INTEGER))
 				.withField(new Field("code", INTEGER)).build();
+		
+		String generated = strategy.generate(message);
+		
+		assertThat(generated).matches(expected);
+	}
+	
+	@Test
+	public void should_add_constructor() throws Exception {
+		String expected = "class Product {\n\tint id;\n\tString name;\n\tProduct(this.id, this.name);\n}";
+		Message message = aMessage().withDataName("Product")
+				.withField(new Field("id", INTEGER))
+				.withField(new Field("name", TEXT)).build();
 		
 		String generated = strategy.generate(message);
 		
