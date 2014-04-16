@@ -69,7 +69,7 @@ public class DartStrategyTest {
 	
 	@Test
 	public void should_add_constructor() throws Exception {
-		String expected = "class Product {\n\tint id;\n\tString name;\n\tProduct(this.id, this.name);\n}";
+		String expected = "class Product {\n\tint id;\n\tString name;\n\n\tProduct(this.id, this.name);\n}";
 		Message message = aMessage().withDataName("Product")
 				.withField(new Field("id", INTEGER))
 				.withField(new Field("name", TEXT)).build();
