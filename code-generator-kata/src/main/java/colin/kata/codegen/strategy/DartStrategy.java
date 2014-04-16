@@ -28,9 +28,9 @@ public class DartStrategy implements GenerationStrategy {
 			return "";
 		}
 		StringBuilder builder = new StringBuilder();
-		builder.append("\t").append(message.getDataName()).append("(");
+		builder.append(System.lineSeparator()).append("\t").append(message.getDataName()).append("(");
 		for (Field f : message.getFields()) {
-			builder.append("this.").append(f.getName()).append(", ");
+			builder.append("this.").append(camelCase(f.getName())).append(", ");
 		}
 		builder.deleteCharAt(builder.length() - 1);
 		builder.deleteCharAt(builder.length() - 1);
@@ -44,7 +44,7 @@ public class DartStrategy implements GenerationStrategy {
 		for (FieldType type : fieldsByType.keySet()) {
 			builder.append("\t").append(convert(type));
 			for (Field f : fieldsByType.get(type)) {
-				builder.append(" ").append(f.getName()).append(",");
+				builder.append(" ").append(camelCase(f.getName())).append(",");
 			}
 			builder.deleteCharAt(builder.length() - 1);
 			builder.append(";").append(lineSeparator());
@@ -52,6 +52,19 @@ public class DartStrategy implements GenerationStrategy {
 		return builder.toString();
 	}
 
+	private String camelCase(String name) {
+		String[] split = name.split("_");
+		String toto = split[0];
+		if (split.length > 1) {
+			for (int i = 1; i < split.length; i++) {
+				String a = split[i];
+				char charAt = a.charAt(0);
+				toto += String.valueOf(charAt).toUpperCase() + a.substring(1, a.length());
+			}
+		}
+		return toto;
+	}
+	
 	private Map<FieldType, List<Field>> getFieldsByType(Message message) {
 		Map<FieldType, List<Field>> fieldsByType = new LinkedHashMap<FieldType, List<Field>>();
 		for (Field field : message.getFields()) {
