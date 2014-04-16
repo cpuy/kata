@@ -1,5 +1,6 @@
 package colin.kata.codegen.strategy;
 
+import static colin.kata.codegen.parser.FieldType.INTEGER;
 import static colin.kata.codegen.parser.MessageBuilder.aMessage;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -8,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import colin.kata.codegen.Message;
+import colin.kata.codegen.parser.Field;
+import colin.kata.codegen.parser.FieldType;
 import colin.kata.codegen.parser.MessageBuilder;
 
 
@@ -44,7 +47,13 @@ public class DartStrategyTest {
 	
 	@Test
 	public void should_add_fields_in_class_body() throws Exception {
+		String expected = "class Product {\n\tint id;\n}";
+		Message message = aMessage().withDataName("Product")
+				.withField(new Field("id", INTEGER)).build();
 		
+		String generated = strategy.generate(message);
+		
+		assertThat(generated).isEqualTo(expected);
 	}
 	
 }

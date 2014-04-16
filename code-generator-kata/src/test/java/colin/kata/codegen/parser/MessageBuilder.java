@@ -20,6 +20,11 @@ public class MessageBuilder {
 		return this;
 	}
 	
+	public MessageBuilder withField(Field field) {
+		message.addField(field);
+		return this;
+	}
+	
 	public Message build() {
 		return message;
 	}
