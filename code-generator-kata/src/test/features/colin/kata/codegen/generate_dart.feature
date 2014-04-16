@@ -18,9 +18,9 @@ Feature: Dart POJO generation
 			 * has an id, a name and an order_code
 			 */
 			class Product {
-			       int id, orderCode;
-			       String name;
+				int id, orderCode;
+				String name;
 			       
-			      Product(this.id, this.name, this.orderCode);
+				Product(this.id, this.name, this.orderCode);
 			}
 			"""
