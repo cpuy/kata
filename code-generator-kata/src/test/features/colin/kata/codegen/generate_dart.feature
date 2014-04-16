@@ -3,7 +3,8 @@ Feature: Dart POJO generation
 		Given a data structure
 			"""
 			# Domain representation of product 
-			D Product
+			# has an id, a name and an order_code
+			M Product
 			F id   integer
 			F name   text
 			F order_code integer
@@ -12,7 +13,10 @@ Feature: Dart POJO generation
 		When I ask for dart POJO generation
 		Then I should have the given POJO
 			""" 
-			/* Domain representation of product */
+			/**
+			 * Domain representation of product
+			 * has an id, a name and an order_code
+			 */
 			class Product {
 			       int id, orderCode;
 			       String name;

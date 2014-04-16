@@ -3,7 +3,8 @@ Feature: Java POJO generation
 		Given a data structure
 			"""
 			# Domain representation of product 
-			D Product
+			# has an id, a name and an order_code
+			M Product
 			F id   integer
 			F name   text
 			F order_code integer
@@ -13,8 +14,9 @@ Feature: Java POJO generation
 		Then I should have the given POJO
 			"""
 			/**
-			* Domain representation of product 
-			*/
+			 * Domain representation of product
+			 * has an id, a name and an order_code
+			 */
 			public class Product {
 
 				private int id;
