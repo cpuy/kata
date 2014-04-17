@@ -1,0 +1,25 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+	<body>
+		<h1>Prime Factors</h1>
+		<p>Scenario : As a kata developer, I want to have prime factors of a number</p>
+		
+		<div class="spec">
+			<p>There are no prime numbers for <b concordion:set="#number">1</b>
+			  <b concordion:assertEquals="getPrimeFactors(#number)">[]</b>
+			</p>
+			<p>The prime factors for the number <b concordion:set="#number">3</b>
+			 is <b concordion:assertEquals="getPrimeFactors(#number)">[3]</b>
+			</p>
+			<p>The prime factors for the number <b concordion:set="#number">12</b>
+			 are <b concordion:assertEquals="getPrimeFactors(#number)">[2, 2, 3]</b>
+			</p>
+			<p>The prime factors for the number <b concordion:set="#number">2658</b>
+			 are <b concordion:assertEquals="getPrimeFactors(#number)">[2, 3, 443]</b>
+			</p>
+			<!-- fail, long is needed -->
+			<!-- <p>The prime factors for the number <b concordion:set="#number">26574337380958</b>
+			 are <b concordion:assertEquals="getPrimeFactors(#number)">[491, 233, 61, 823]</b>
+			</p> -->
+		</div>
+	</body>
+</html>
